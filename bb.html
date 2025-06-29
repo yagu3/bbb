@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎵 Advanced Solfeggio Frequencies Studio</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --accent-color: #4caf50;
+        --chakra-red: #e74c3c;
+        --chakra-orange: #e67e22;
+        --chakra-yellow: #f1c40f;
+        --chakra-green: #2ecc71;
+        --chakra-blue: #3498db;
+        --chakra-indigo: #9b59b6;
+        --chakra-violet: #8e44ad;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 32px;
+        padding: 40px;
+        box-shadow: 
+          0 32px 64px rgba(0, 0, 0, 0.12),
+          0 0 0 1px rgba(255, 255, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        max-width: 1400px;
+        width: 100%;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          var(--chakra-red),
+          var(--chakra-orange),
+          var(--chakra-yellow),
+          var(--chakra-green),
+          var(--chakra-blue),
+          var(--chakra-indigo),
+          var(--chakra-violet)
+        );
+        opacity: 0.9;
+        border-radius: 32px 32px 0 0;
+      }
+
+      h1 {
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color),
+          var(--accent-color)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 40px;
+        font-size: clamp(2.2em, 5vw, 3.2em);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        position: relative;
+      }
+
+      h1::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        border-radius: 2px;
+      }
+
+      /* Main Navigation Tabs */
+      .nav-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 20px;
+        padding: 8px;
+        gap: 8px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-tab {
+        padding: 16px 32px;
+        border: none;
+        border-radius: 16px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background: transparent;
+        color: #666;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-tab::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .nav-tab:hover::before {
+        left: 100%;
+      }
+
+      .nav-tab.active {
+        background: linear-gradient(135deg, var(--accent-color), #45a049);
+        color: white;
+        box-shadow: 
+          0 8px 24px rgba(76, 175, 80, 0.3),
+          0 4px 8px rgba(76, 175, 80, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Enhanced Frequency Controls - Modern Card Layout */
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+        padding: 0;
+      }
+
+      .freq-btn {
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        border: none;
+        padding: 24px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 
+          0 12px 32px rgba(0, 0, 0, 0.08),
+          0 4px 8px rgba(0, 0, 0, 0.04),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .freq-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .freq-btn:hover::before {
+        left: 100%;
+      }
+
+      .freq-btn:hover {
+        background: linear-gradient(135deg, var(--accent-color), #45a049);
+        color: white;
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 
+          0 20px 40px rgba(76, 175, 80, 0.3),
+          0 8px 16px rgba(76, 175, 80, 0.2);
+        border-color: var(--accent-color);
+      }
+
+      .freq-btn i {
+        font-size: 28px;
+        margin-bottom: 12px;
+        opacity: 0.8;
+      }
+
+      .freq-btn div:first-of-type {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .freq-btn div:last-of-type {
+        font-size: 13px;
+        opacity: 0.8;
+        font-weight: 500;
+      }
+
+      .freq-btn.active {
+        background: linear-gradient(135deg, #ff6b6b, #ff5252);
+        color: white;
+        animation: activeGlow 2s infinite;
+        box-shadow: 
+          0 0 32px rgba(255, 107, 107, 0.6),
+          0 8px 24px rgba(255, 107, 107, 0.4);
+        transform: translateY(-4px);
+      }
+
+      @keyframes activeGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(255, 107, 107, 0.8);
+        }
+      }
+
+      /* Modern Control Buttons */
+      .control-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+
+      .ctrl-btn {
+        background: linear-gradient(135deg, #2196f3, #1976d2);
+        color: white;
+        border: none;
+        padding: 16px 32px;
+        border-radius: 16px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 
+          0 12px 32px rgba(33, 150, 243, 0.3),
+          0 4px 8px rgba(33, 150, 243, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ctrl-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .ctrl-btn:hover::before {
+        left: 100%;
+      }
+
+      .ctrl-btn:hover {
+        background: linear-gradient(135deg, #1976d2, #2196f3);
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 
+          0 16px 40px rgba(33, 150, 243, 0.4),
+          0 8px 16px rgba(33, 150, 243, 0.3);
+      }
+
+      .ctrl-btn.stop {
+        background: linear-gradient(135deg, #f44336, #d32f2f);
+        box-shadow: 
+          0 12px 32px rgba(244, 67, 54, 0.3),
+          0 4px 8px rgba(244, 67, 54, 0.2);
+      }
+
+      .ctrl-btn.stop:hover {
+        background: linear-gradient(135deg, #d32f2f, #f44336);
+        box-shadow: 
+          0 16px 40px rgba(244, 67, 54, 0.4),
+          0 8px 16px rgba(244, 67, 54, 0.3);
+      }
+
+      /* Modern Status Card */
+      .status {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 24px;
+        padding: 32px;
+        margin-bottom: 32px;
+        text-align: center;
+        box-shadow: 
+          0 16px 40px rgba(0, 0, 0, 0.08),
+          0 4px 8px rgba(0, 0, 0, 0.04);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .status h3 {
+        color: #333;
+        margin-bottom: 16px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .progress-bar {
+        background: #e0e0e0;
+        border-radius: 10px;
+        height: 20px;
+        overflow: hidden;
+        margin: 10px 0;
+      }
+
+      .progress-fill {
+        background: linear-gradient(45deg, #4caf50, #45a049);
+        height: 100%;
+        width: 0%;
+        transition: width 1s ease;
+        border-radius: 10px;
+      }
+
+      /* Modern Analyzer Card */
+      .analyzer {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 24px;
+        padding: 32px;
+        margin-top: 32px;
+        box-shadow: 
+          0 16px 40px rgba(0, 0, 0, 0.08),
+          0 4px 8px rgba(0, 0, 0, 0.04);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .analyzer h3 {
+        color: #333;
+        margin-bottom: 24px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .freq-display {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+        margin-top: 24px;
+      }
+
+      .freq-info {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 
+          0 8px 24px rgba(0, 0, 0, 0.06),
+          0 2px 4px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+      }
+
+      .freq-info:hover {
+        transform: translateY(-4px);
+        box-shadow: 
+          0 12px 32px rgba(0, 0, 0, 0.1),
+          0 4px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .freq-info h4 {
+        color: #666;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .freq-value {
+        font-size: 1.4em;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 4px;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        margin: 0 10px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #4caf50;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      /* Modern Volume Control */
+      .volume-control {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 24px 0;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 16px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .volume-control span {
+        font-weight: 600;
+        color: #333;
+        font-size: 15px;
+      }
+
+      .volume-slider {
+        width: 240px;
+        height: 8px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #e0e0e0, var(--accent-color));
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        transition: all 0.3s ease;
+      }
+
+      .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        cursor: pointer;
+        box-shadow: 
+          0 4px 12px rgba(76, 175, 80, 0.4),
+          0 2px 4px rgba(76, 175, 80, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .volume-slider::-webkit-slider-thumb:hover {
+        transform: scale(1.1);
+        box-shadow: 
+          0 6px 16px rgba(76, 175, 80, 0.5),
+          0 3px 6px rgba(76, 175, 80, 0.3);
+      }
+
+      .volume-slider::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        cursor: pointer;
+        border: none;
+        box-shadow: 
+          0 4px 12px rgba(76, 175, 80, 0.4),
+          0 2px 4px rgba(76, 175, 80, 0.2);
+      }
+
+      /* Modern Preset Buttons */
+      .presets {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        margin: 32px 0;
+        flex-wrap: wrap;
+      }
+
+      .preset-btn {
+        background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+        color: white;
+        border: none;
+        padding: 14px 24px;
+        border-radius: 16px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 
+          0 8px 24px rgba(156, 39, 176, 0.3),
+          0 2px 4px rgba(156, 39, 176, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .preset-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .preset-btn:hover::before {
+        left: 100%;
+      }
+
+      .preset-btn:hover {
+        background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 
+          0 12px 32px rgba(156, 39, 176, 0.4),
+          0 4px 8px rgba(156, 39, 176, 0.3);
+      }
+
+      /* Modern Session Controls */
+      .session-controls {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin: 24px 0;
+        flex-wrap: wrap;
+      }
+
+      .session-btn {
+        background: linear-gradient(135deg, #ff9800, #f57c00);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 
+          0 6px 16px rgba(255, 152, 0, 0.3),
+          0 2px 4px rgba(255, 152, 0, 0.2);
+      }
+
+      .session-btn:hover {
+        background: linear-gradient(135deg, #f57c00, #ff9800);
+        transform: translateY(-2px);
+        box-shadow: 
+          0 8px 20px rgba(255, 152, 0, 0.4),
+          0 4px 8px rgba(255, 152, 0, 0.3);
+      }
+
+      .session-btn.active {
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        box-shadow: 
+          0 6px 16px rgba(76, 175, 80, 0.3),
+          0 2px 4px rgba(76, 175, 80, 0.2);
+      }
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      .session-btn:hover {
+        background: linear-gradient(45deg, #f57c00, #ff9800);
+      }
+
+      .session-btn.active {
+        background: linear-gradient(45deg, #4caf50, #45a049);
+      }
+
+      .visualization {
+        height: 100px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .wave-animation {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(76, 175, 80, 0.3) 25%,
+          rgba(76, 175, 80, 0.6) 50%,
+          rgba(76, 175, 80, 0.3) 75%,
+          transparent 100%
+        );
+        animation: wave-move 3s ease-in-out infinite;
+        transform: translateX(-100%);
+      }
+
+      @keyframes wave-move {
+        0% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      .fade-controls {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: 15px 0;
+        flex-wrap: wrap;
+      }
+
+      .fade-btn {
+        background: linear-gradient(45deg, #607d8b, #455a64);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 11px;
+        transition: all 0.3s ease;
+      }
+
+      .favorites {
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .favorite-star {
+        cursor: pointer;
+        font-size: 20px;
+        margin-left: 10px;
+        transition: color 0.3s ease;
+        color: #ccc;
+      }
+
+      .favorite-star.active {
+        color: #ffd700;
+      }
+
+      /* Modern Info Card */
+      .quick-info {
+        background: linear-gradient(135deg, rgba(232, 245, 232, 0.9), rgba(241, 248, 233, 0.9));
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        border-radius: 16px;
+        padding: 24px;
+        margin: 24px 0;
+        font-size: 15px;
+        color: #2e7d32;
+        backdrop-filter: blur(5px);
+        box-shadow: 
+          0 8px 24px rgba(76, 175, 80, 0.1),
+          0 2px 4px rgba(76, 175, 80, 0.05);
+        line-height: 1.6;
+      }
+
+      .quick-info strong {
+        font-weight: 700;
+      }
+
+      .breathing-guide {
+        text-align: center;
+        margin: 15px 0;
+        font-size: 18px;
+        color: #666;
+        font-weight: bold;
+      }
+
+      .breath-circle {
+        width: 80px;
+        height: 80px;
+        border: 3px solid #4caf50;
+        border-radius: 50%;
+        margin: 10px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #4caf50;
+        animation: breathe 4s ease-in-out infinite;
+      }
+
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* Modern Audio Visualization Canvas */
+      .audio-canvas-container {
+        position: relative;
+        height: 240px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.95),
+          rgba(30, 30, 30, 0.95)
+        );
+        border-radius: 24px;
+        margin: 32px 0;
+        overflow: hidden;
+        border: 1px solid var(--accent-color);
+        box-shadow: 
+          0 16px 40px rgba(76, 175, 80, 0.2),
+          0 4px 8px rgba(76, 175, 80, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      #audioCanvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 24px;
+      }
+
+      /* Chakra Visualization Wheel */
+      .chakra-wheel {
+        width: 250px;
+        height: 250px;
+        margin: 20px auto;
+        position: relative;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--chakra-red) 0deg 51.4deg,
+          var(--chakra-orange) 51.4deg 102.8deg,
+          var(--chakra-yellow) 102.8deg 154.2deg,
+          var(--chakra-green) 154.2deg 205.6deg,
+          var(--chakra-blue) 205.6deg 257deg,
+          var(--chakra-indigo) 257deg 308.4deg,
+          var(--chakra-violet) 308.4deg 360deg
+        );
+        animation: rotateChakra 30s linear infinite;
+        box-shadow: 0 0 50px rgba(76, 175, 80, 0.3);
+      }
+
+      @keyframes rotateChakra {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .chakra-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.9),
+          rgba(255, 255, 255, 0.6)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+
+      /* Modern Binaural Controls */
+      .binaural-controls {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 24px;
+        padding: 32px;
+        margin: 32px 0;
+        border: 1px solid rgba(156, 39, 176, 0.2);
+        box-shadow: 
+          0 16px 40px rgba(156, 39, 176, 0.1),
+          0 4px 8px rgba(156, 39, 176, 0.05);
+        backdrop-filter: blur(10px);
+      }
+
+      .frequency-mixer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+        margin: 24px 0;
+      }
+
+      .mixer-channel {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        padding: 24px;
+        text-align: center;
+        box-shadow: 
+          0 8px 24px rgba(0, 0, 0, 0.06),
+          0 2px 4px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(5px);
+      }
+
+      .frequency-slider {
+        width: 100%;
+        margin: 10px 0;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 8px;
+        border-radius: 5px;
+        background: linear-gradient(90deg, #e0e0e0, var(--accent-color));
+        outline: none;
+      }
+
+      .frequency-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--chakra-violet);
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      /* AI Recommendations Panel - Modern Card Design */
+      .ai-recommendations {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 24px;
+        padding: 32px;
+        margin-bottom: 40px;
+        border: 1px solid rgba(52, 152, 219, 0.2);
+        box-shadow: 
+          0 16px 40px rgba(52, 152, 219, 0.1),
+          0 4px 8px rgba(52, 152, 219, 0.05);
+        backdrop-filter: blur(10px);
+      }
+
+      .ai-recommendations h3 {
+        color: #333;
+        margin-bottom: 24px;
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .ai-recommendations h3 i {
+        color: var(--chakra-blue);
+        font-size: 24px;
+      }
+
+      .recommendation-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        padding: 20px;
+        margin: 16px 0;
+        border-left: 4px solid var(--chakra-blue);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 
+          0 8px 24px rgba(52, 152, 219, 0.1),
+          0 2px 4px rgba(52, 152, 219, 0.05);
+        border: 1px solid rgba(52, 152, 219, 0.1);
+      }
+
+      .recommendation-card:hover {
+        transform: translateX(8px) translateY(-4px);
+        box-shadow: 
+          0 16px 32px rgba(52, 152, 219, 0.2),
+          0 4px 8px rgba(52, 152, 219, 0.1);
+        border-color: var(--chakra-blue);
+      }
+
+      /* Advanced Timer Display */
+      .advanced-timer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .timer-segment {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(240, 240, 240, 0.9)
+        );
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .timer-segment.active {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+      }
+
+      /* Sound Library Grid */
+      .sound-library {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .sound-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(250, 250, 250, 0.9)
+        );
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .sound-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+        box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
+      }
+
+      .sound-card.active {
+        background: linear-gradient(135deg, var(--accent-color), #45a049);
+        color: white;
+      }
+
+      /* Analytics Dashboard */
+      .analytics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .stat-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(248, 249, 250, 0.95)
+        );
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        border-left: 4px solid var(--accent-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: var(--accent-color);
+        margin: 10px 0;
+      }
+
+      /* Enhanced Responsive Design */
+      @media (max-width: 1024px) {
+        .container {
+          padding: 24px;
+          margin: 16px;
+        }
+        
+        .controls {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .frequency-mixer {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 20px;
+          margin: 12px;
+          border-radius: 24px;
+        }
+
+        .controls {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .freq-btn {
+          min-height: 100px;
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: clamp(1.8em, 6vw, 2.4em);
+          margin-bottom: 24px;
+        }
+
+        .nav-tabs {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .nav-tab {
+          padding: 12px 24px;
+        }
+
+        .ai-recommendations,
+        .status,
+        .analyzer {
+          padding: 24px;
+        }
+
+        .volume-slider {
+          width: 180px;
+        }
+
+        .audio-canvas-container {
+          height: 180px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 16px;
+          margin: 8px;
+        }
+
+        .freq-btn {
+          min-height: 80px;
+          padding: 16px;
+        }
+
+        .freq-btn i {
+          font-size: 24px;
+          margin-bottom: 8px;
+        }
+
+        .presets,
+        .session-controls {
+          gap: 8px;
+        }
+
+        .preset-btn,
+        .session-btn {
+          padding: 10px 16px;
+          font-size: 12px;
+        }
+
+        .ctrl-btn {
+          padding: 12px 20px;
+          font-size: 14px;
+        }
+      }
+
+      /* Loading Animations */
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(76, 175, 80, 0.3);
+        border-top: 4px solid var(--accent-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Enhanced Tooltips */
+      .tooltip {
+        position: relative;
+        cursor: help;
+      }
+
+      .tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .tooltip:hover::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <i class="fas fa-music"></i> Advanced Solfeggio Frequencies Studio
+      </h1>
+
+      <!-- Navigation Tabs -->
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-tab="frequencies">
+          <i class="fas fa-wave-square"></i> Frequencies
+        </button>
+        <button class="nav-tab" data-tab="binaural">
+          <i class="fas fa-headphones"></i> Binaural
+        </button>
+      </div>
+
+      <!-- AI Recommendations Panel -->
+      <div class="ai-recommendations">
+        <h3><i class="fas fa-brain"></i> Smart Recommendations</h3>
+        <div id="aiRecommendations">
+          <div class="recommendation-card" data-recommendation="morning">
+            <strong>🌅 Morning Energy</strong> - Start with 528 Hz for 10
+            minutes to boost DNA repair and vitality
+          </div>
+          <div class="recommendation-card" data-recommendation="focus">
+            <strong>🎯 Focus Session</strong> - Use 741 Hz + 852 Hz binaural
+            beats for enhanced concentration
+          </div>
+          <div class="recommendation-card" data-recommendation="stress">
+            <strong>😌 Stress Relief</strong> - Try 396 Hz to release fear and
+            anxiety
+          </div>
+        </div>
+      </div>
+
+      <!-- Frequencies Tab Content -->
+      <div class="tab-content active" id="frequencies">
+        <div class="controls">
+          <button
+            class="freq-btn tooltip"
+            data-freq="174"
+            data-tooltip="Natural anesthetic - Pain relief foundation"
+          >
+            <i class="fas fa-heart-pulse"></i>
+            <div><strong>174 Hz</strong></div>
+            <div>Pain Relief</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="285"
+            data-tooltip="Restructures damaged organs - Accelerates healing"
+          >
+            <i class="fas fa-leaf"></i>
+            <div><strong>285 Hz</strong></div>
+            <div>Healing & Regeneration</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="396"
+            data-tooltip="Cleanses guilt and fear - Root chakra activation"
+          >
+            <i class="fas fa-shield-alt"></i>
+            <div><strong>396 Hz</strong></div>
+            <div>Liberation from Fear</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="417"
+            data-tooltip="Facilitates change - Breaks destructive patterns"
+          >
+            <i class="fas fa-exchange-alt"></i>
+            <div><strong>417 Hz</strong></div>
+            <div>Facilitating Change</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="528"
+            data-tooltip="The miracle tone - DNA repair and love frequency"
+          >
+            <i class="fas fa-heart"></i>
+            <div><strong>528 Hz</strong></div>
+            <div>Love & DNA Repair</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="639"
+            data-tooltip="Harmonious relationships - Heart chakra healing"
+          >
+            <i class="fas fa-hands-helping"></i>
+            <div><strong>639 Hz</strong></div>
+            <div>Relationships</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="741"
+            data-tooltip="Awakens intuition - Cleanses cells from toxins"
+          >
+            <i class="fas fa-eye"></i>
+            <div><strong>741 Hz</strong></div>
+            <div>Awakening Intuition</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="852"
+            data-tooltip="Spiritual order - Third eye activation"
+          >
+            <i class="fas fa-om"></i>
+            <div><strong>852 Hz</strong></div>
+            <div>Spiritual Order</div>
+          </button>
+          <button
+            class="freq-btn tooltip"
+            data-freq="963"
+            data-tooltip="Divine connection - Crown chakra activation"
+          >
+            <i class="fas fa-crown"></i>
+            <div><strong>963 Hz</strong></div>
+            <div>Divine Connection</div>
+          </button>
+        </div>
+
+        <!-- Audio Visualization Canvas -->
+        <div class="audio-canvas-container">
+          <canvas id="audioCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Binaural Beats Tab Content -->
+      <div class="tab-content" id="binaural">
+        <div class="binaural-controls">
+          <h3><i class="fas fa-headphones"></i> Binaural Beats Generator</h3>
+          <p>
+            Create custom binaural beats by mixing two slightly different
+            frequencies
+          </p>
+
+          <div class="frequency-mixer">
+            <div class="mixer-channel">
+              <h4>Left Ear (Hz)</h4>
+              <input
+                type="range"
+                class="frequency-slider"
+                id="leftFreq"
+                min="100"
+                max="1000"
+                value="440"
+              />
+              <div class="freq-display" id="leftFreqDisplay">440 Hz</div>
+            </div>
+            <div class="mixer-channel">
+              <h4>Right Ear (Hz)</h4>
+              <input
+                type="range"
+                class="frequency-slider"
+                id="rightFreq"
+                min="100"
+                max="1000"
+                value="444"
+              />
+              <div class="freq-display" id="rightFreqDisplay">444 Hz</div>
+            </div>
+            <div class="mixer-channel">
+              <h4>Beat Frequency</h4>
+              <div class="freq-display" id="beatFreqDisplay">4 Hz</div>
+              <small
+                >Alpha waves (8-12 Hz)<br />Beta waves (13-30 Hz)<br />Theta
+                waves (4-8 Hz)</small
+              >
+            </div>
+          </div>
+
+          <div class="control-buttons">
+            <button class="ctrl-btn" id="binauralStart">
+              <i class="fas fa-play"></i> Start Binaural
+            </button>
+            <button class="ctrl-btn stop" id="binauralStop">
+              <i class="fas fa-stop"></i> Stop
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-buttons">
+        <button class="ctrl-btn" id="stopBtn">⏹️ Stop</button>
+        <label for="loopToggle">Loop Mode:</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="loopToggle" checked />
+          <span class="slider"></span>
+        </div>
+      </div>
+
+      <div class="volume-control">
+        <span>🔊 Volume:</span>
+        <input
+          type="range"
+          id="volumeSlider"
+          class="volume-slider"
+          min="0"
+          max="100"
+          value="40"
+        />
+        <span id="volumeDisplay">40%</span>
+      </div>
+
+      <div class="session-controls">
+        <span>Session Length:</span>
+        <button class="session-btn active" data-duration="300">5 min</button>
+        <button class="session-btn" data-duration="600">10 min</button>
+        <button class="session-btn" data-duration="900">15 min</button>
+        <button class="session-btn" data-duration="1800">30 min</button>
+        <button class="session-btn" data-duration="3600">60 min</button>
+      </div>
+
+      <div class="presets">
+        <button class="preset-btn" data-preset="chakra">
+          🔮 Chakra Healing
+        </button>
+        <button class="preset-btn" data-preset="sleep">😴 Deep Sleep</button>
+        <button class="preset-btn" data-preset="meditation">
+          🧘 Meditation
+        </button>
+        <button class="preset-btn" data-preset="focus">🎯 Focus & Study</button>
+        <button class="preset-btn" data-preset="healing">
+          💚 Physical Healing
+        </button>
+      </div>
+
+      <div class="fade-controls">
+        <button class="fade-btn" id="fadeInBtn">Fade In</button>
+        <button class="fade-btn" id="fadeOutBtn">Fade Out</button>
+        <label>
+          <input type="checkbox" id="autoFade" /> Auto Fade In/Out
+        </label>
+      </div>
+
+      <div class="status">
+        <h3>Status: <span id="statusText">Ready</span></h3>
+        <div id="currentFreq">Select a frequency to begin</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div id="timeRemaining">Time: 00:00</div>
+
+        <div class="visualization" id="visualization">
+          <div
+            class="wave-animation"
+            id="waveAnimation"
+            style="display: none"
+          ></div>
+          <span id="visualizationText">Select frequency to see waves</span>
+        </div>
+
+        <div class="breathing-guide" id="breathingGuide" style="display: none">
+          <div>Breathe with the rhythm</div>
+          <div class="breath-circle" id="breathCircle">Inhale</div>
+        </div>
+      </div>
+
+      <div class="quick-info" id="quickInfo">
+        💡 <strong>Tip:</strong> Use headphones for best experience. Start with
+        528 Hz (Love frequency) for general healing.
+      </div>
+
+      <div class="analyzer">
+        <h3>🔊 Frequency Analyzer</h3>
+        <div id="analyzerStatus">System Ready - Click a frequency to start</div>
+        <div class="freq-display">
+          <div class="freq-info">
+            <h4>Current Frequency</h4>
+            <div class="freq-value" id="currentFreqHz">0 Hz</div>
+          </div>
+          <div class="freq-info">
+            <h4>Healing Type</h4>
+            <div class="freq-value" id="healingType">Select frequency</div>
+            <span
+              class="favorite-star"
+              id="favoriteStar"
+              title="Add to favorites"
+              >⭐</span
+            >
+          </div>
+          <div class="freq-info">
+            <h4>Waveform</h4>
+            <div class="freq-value" id="waveform">Pure Sine Wave</div>
+          </div>
+          <div class="freq-info">
+            <h4>Volume Level</h4>
+            <div class="freq-value" id="volumeLevel">50%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class AdvancedSolfeggioStudio {
+        constructor() {
+          this.audioContext = null;
+          this.analyser = null;
+          this.oscillators = [];
+          this.gainNodes = [];
+          this.currentFrequency = 0;
+          this.isPlaying = false;
+          this.currentTimer = null;
+          this.progressInterval = null;
+          this.sessionStartTime = 0;
+          this.sessionDuration = 5 * 60 * 1000;
+          this.volume = 0.4;
+          this.autoFade = false;
+          this.breathingInterval = null;
+          this.favorites =
+            JSON.parse(localStorage.getItem("solfeggioFavorites")) || [];
+
+          // Analytics data
+          this.analytics = JSON.parse(
+            localStorage.getItem("solfeggioAnalytics")
+          ) || {
+            totalTime: 0,
+            sessionsToday: 0,
+            lastSessionDate: null,
+            streakDays: 0,
+            frequencyUsage: {},
+            startDate: new Date().toISOString(),
+          };
+
+          // Enhanced frequency data
+          this.frequencies = {
+            solfeggio: [174, 285, 396, 417, 528, 639, 741, 852, 963],
+            chakra: [256, 288, 320, 341.3, 384, 426.7, 480],
+            binaural: { left: 440, right: 444 },
+          };
+
+          this.frequencyMeanings = {
+            174: "Pain Relief & Security Foundation",
+            285: "Healing & Tissue Regeneration",
+            396: "Liberation from Fear & Guilt",
+            417: "Facilitating Change & Breaking Patterns",
+            528: "Love, DNA Repair & Miracles",
+            639: "Relationships & Heart Chakra",
+            741: "Awakening Intuition & Self-Expression",
+            852: "Spiritual Order & Third Eye",
+            963: "Divine Connection & Crown Chakra",
+            256: "Root Chakra - Grounding & Stability",
+            288: "Sacral Chakra - Creativity & Sexuality",
+            320: "Solar Plexus - Personal Power",
+            341.3: "Heart Chakra - Love & Compassion",
+            384: "Throat Chakra - Communication",
+            426.7: "Third Eye - Intuition & Wisdom",
+            480: "Crown Chakra - Spiritual Connection",
+          };
+
+          // Canvas for audio visualization
+          this.canvas = null;
+          this.canvasCtx = null;
+          this.animationId = null;
+
+          // Background sound synthesis
+          this.backgroundSounds = {};
+          this.currentBackgroundSound = null;
+
+          // AI recommendation system
+          this.recommendations = {
+            morning: [528, 741, 852],
+            afternoon: [639, 417, 285],
+            evening: [396, 174, 285],
+            stress: [396, 528, 741],
+            focus: [741, 852, 963],
+            sleep: [174, 285, 396],
+            meditation: [528, 639, 852],
+            healing: [174, 285, 528, 639],
+          };
+
+          this.initialize();
+        }
+
+        async initialize() {
+          this.initializeElements();
+          this.bindEvents();
+          this.initializeCanvas();
+          this.updateAnalytics();
+          this.generateAIRecommendations();
+          this.loadUserPreferences();
+
+          // Initialize audio context on first user interaction
+          document.addEventListener(
+            "click",
+            this.initializeAudioContext.bind(this),
+            { once: true }
+          );
+        }
+
+        initializeElements() {
+          // Enhanced element initialization
+          this.statusText = document.getElementById("statusText");
+          this.currentFreqDisplay = document.getElementById("currentFreq");
+          this.progressFill = document.getElementById("progressFill");
+          this.timeRemaining = document.getElementById("timeRemaining");
+          this.analyzerStatus = document.getElementById("analyzerStatus");
+          this.currentFreqHz = document.getElementById("currentFreqHz");
+          this.healingType = document.getElementById("healingType");
+          this.volumeSlider = document.getElementById("volumeSlider");
+          this.volumeDisplay = document.getElementById("volumeDisplay");
+
+          // Canvas elements
+          this.canvas = document.getElementById("audioCanvas");
+          this.canvasCtx = this.canvas ? this.canvas.getContext("2d") : null;
+
+          // Binaural controls
+          this.leftFreqSlider = document.getElementById("leftFreq");
+          this.rightFreqSlider = document.getElementById("rightFreq");
+          this.leftFreqDisplay = document.getElementById("leftFreqDisplay");
+          this.rightFreqDisplay = document.getElementById("rightFreqDisplay");
+          this.beatFreqDisplay = document.getElementById("beatFreqDisplay");
+        }
+
+        initializeCanvas() {
+          if (!this.canvas || !this.canvasCtx) return;
+
+          this.canvas.width = this.canvas.offsetWidth * window.devicePixelRatio;
+          this.canvas.height =
+            this.canvas.offsetHeight * window.devicePixelRatio;
+          this.canvasCtx.scale(
+            window.devicePixelRatio,
+            window.devicePixelRatio
+          );
+
+          this.drawStaticVisualization();
+        }
+
+        bindEvents() {
+          // Tab navigation
+          document.querySelectorAll(".nav-tab").forEach((tab) => {
+            tab.addEventListener("click", (e) =>
+              this.switchTab(e.target.dataset.tab)
+            );
+          });
+
+          // Frequency buttons (both solfeggio and chakra)
+          document.querySelectorAll(".freq-btn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+              const freq = parseFloat(e.currentTarget.dataset.freq);
+              this.startFrequency(freq);
+            });
+          });
+
+          // Enhanced control buttons
+          document
+            .getElementById("stopBtn")
+            ?.addEventListener("click", () => this.stopAll());
+
+          // Volume control with real-time feedback
+          this.volumeSlider?.addEventListener("input", (e) => {
+            this.volume = e.target.value / 100;
+            this.volumeDisplay.textContent = e.target.value + "%";
+            this.updateGainNodes();
+            this.updateAnalyzer();
+          });
+
+          // Binaural beats controls
+          this.leftFreqSlider?.addEventListener(
+            "input",
+            this.updateBinauralFrequencies.bind(this)
+          );
+          this.rightFreqSlider?.addEventListener(
+            "input",
+            this.updateBinauralFrequencies.bind(this)
+          );
+
+          document
+            .getElementById("binauralStart")
+            ?.addEventListener("click", this.startBinauralBeats.bind(this));
+          document
+            .getElementById("binauralStop")
+            ?.addEventListener("click", this.stopBinauralBeats.bind(this));
+
+          // AI Recommendations
+          document.querySelectorAll(".recommendation-card").forEach((card) => {
+            card.addEventListener("click", (e) => {
+              const recommendation = e.currentTarget.dataset.recommendation;
+              this.applyRecommendation(recommendation);
+            });
+          });
+
+          // Sound library
+          document.querySelectorAll(".sound-card").forEach((card) => {
+            card.addEventListener("click", (e) => {
+              const sound = e.currentTarget.dataset.sound;
+              this.toggleBackgroundSound(sound, e.currentTarget);
+            });
+          });
+
+          // Session duration controls
+          document.querySelectorAll(".session-btn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+              document
+                .querySelectorAll(".session-btn")
+                .forEach((b) => b.classList.remove("active"));
+              e.target.classList.add("active");
+              this.sessionDuration = parseInt(e.target.dataset.duration) * 1000;
+            });
+          });
+
+          // Preset buttons
+          document.querySelectorAll(".preset-btn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+              const preset = e.target.dataset.preset;
+              this.startPreset(preset);
+            });
+          });
+
+          // Keyboard shortcuts
+          document.addEventListener(
+            "keydown",
+            this.handleKeyboardShortcuts.bind(this)
+          );
+
+          // Window resize handler for canvas
+          window.addEventListener("resize", () => {
+            if (this.canvas) {
+              setTimeout(() => this.initializeCanvas(), 100);
+            }
+          });
+        }
+
+        switchTab(tabName) {
+          // Hide all tab contents
+          document.querySelectorAll(".tab-content").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+
+          // Remove active class from all nav tabs
+          document.querySelectorAll(".nav-tab").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+
+          // Show selected tab
+          document.getElementById(tabName)?.classList.add("active");
+          document
+            .querySelector(`[data-tab="${tabName}"]`)
+            ?.classList.add("active");
+
+          // Special handling for binaural tab
+          if (tabName === "binaural") {
+            this.updateBinauralFrequencies();
+          }
+        }
+
+        async initializeAudioContext() {
+          try {
+            this.audioContext = new (window.AudioContext ||
+              window.webkitAudioContext)();
+
+            // Create analyzer for visualization
+            this.analyser = this.audioContext.createAnalyser();
+            this.analyser.fftSize = 2048;
+            this.analyser.connect(this.audioContext.destination);
+
+            if (this.audioContext.state === "suspended") {
+              await this.audioContext.resume();
+            }
+
+            this.updateAnalyzerStatus(
+              "🎵 Audio system initialized - Ready for healing frequencies"
+            );
+            return true;
+          } catch (error) {
+            console.error("Failed to initialize audio context:", error);
+            this.updateAnalyzerStatus("❌ Audio initialization failed");
+            return false;
+          }
+        }
+
+        async startFrequency(targetFreq) {
+          if (!(await this.initializeAudioContext())) return;
+
+          this.stopCurrent();
+          this.currentFrequency = targetFreq;
+
+          try {
+            // Create gain node for volume control
+            const gainNode = this.audioContext.createGain();
+            gainNode.gain.value = this.autoFade ? 0 : this.volume;
+
+            // Create oscillator for pure frequency
+            const oscillator = this.audioContext.createOscillator();
+            oscillator.frequency.value = targetFreq;
+            oscillator.type = "sine";
+
+            // Connect audio graph with analyzer
+            oscillator.connect(gainNode);
+            gainNode.connect(this.analyser);
+
+            // Store references
+            this.oscillators = [oscillator];
+            this.gainNodes = [gainNode];
+
+            // Start oscillator
+            oscillator.start();
+
+            this.isPlaying = true;
+            this.sessionStartTime = Date.now();
+
+            // Update analytics
+            this.trackFrequencyUsage(targetFreq);
+
+            this.updateUI();
+            this.updateAnalyzer();
+            this.startTimer();
+            this.startVisualization();
+            this.updateQuickInfo();
+
+            // Auto fade in if enabled
+            if (this.autoFade) {
+              this.fadeIn();
+            }
+
+            this.updateAnalyzerStatus(
+              `✅ Pure ${targetFreq} Hz frequency active - ${this.frequencyMeanings[targetFreq]}`
+            );
+          } catch (error) {
+            console.error("Failed to start frequency:", error);
+            this.updateAnalyzerStatus("❌ Failed to generate audio");
+          }
+        }
+
+        startBinauralBeats() {
+          if (!this.audioContext) return;
+
+          this.stopCurrent();
+
+          try {
+            const leftFreq = parseFloat(this.leftFreqSlider.value);
+            const rightFreq = parseFloat(this.rightFreqSlider.value);
+
+            // Create stereo channels
+            const merger = this.audioContext.createChannelMerger(2);
+            const leftGain = this.audioContext.createGain();
+            const rightGain = this.audioContext.createGain();
+
+            leftGain.gain.value = this.volume * 0.5;
+            rightGain.gain.value = this.volume * 0.5;
+
+            // Create oscillators
+            const leftOsc = this.audioContext.createOscillator();
+            const rightOsc = this.audioContext.createOscillator();
+
+            leftOsc.frequency.value = leftFreq;
+            rightOsc.frequency.value = rightFreq;
+            leftOsc.type = rightOsc.type = "sine";
+
+            // Connect left channel
+            leftOsc.connect(leftGain);
+            leftGain.connect(merger, 0, 0);
+
+            // Connect right channel
+            rightOsc.connect(rightGain);
+            rightGain.connect(merger, 0, 1);
+
+            // Connect to analyzer and destination
+            merger.connect(this.analyser);
+
+            this.oscillators = [leftOsc, rightOsc];
+            this.gainNodes = [leftGain, rightGain];
+
+            leftOsc.start();
+            rightOsc.start();
+
+            this.isPlaying = true;
+            this.sessionStartTime = Date.now();
+            this.currentFrequency = Math.abs(rightFreq - leftFreq); // Beat frequency
+
+            this.updateAnalyzerStatus(
+              `🎧 Binaural beats active: ${leftFreq}Hz ↔ ${rightFreq}Hz (${Math.abs(
+                rightFreq - leftFreq
+              ).toFixed(1)}Hz beat)`
+            );
+            this.startVisualization();
+            this.startTimer();
+          } catch (error) {
+            console.error("Failed to start binaural beats:", error);
+          }
+        }
+
+        stopBinauralBeats() {
+          this.stopCurrent();
+          this.updateAnalyzerStatus("🛑 Binaural beats stopped");
+        }
+
+        updateBinauralFrequencies() {
+          const leftFreq = parseFloat(this.leftFreqSlider.value);
+          const rightFreq = parseFloat(this.rightFreqSlider.value);
+          const beatFreq = Math.abs(rightFreq - leftFreq);
+
+          this.leftFreqDisplay.textContent = `${leftFreq} Hz`;
+          this.rightFreqDisplay.textContent = `${rightFreq} Hz`;
+          this.beatFreqDisplay.textContent = `${beatFreq.toFixed(1)} Hz`;
+
+          // Update oscillator frequencies if playing
+          if (this.oscillators.length >= 2 && this.isPlaying) {
+            this.oscillators[0].frequency.value = leftFreq;
+            this.oscillators[1].frequency.value = rightFreq;
+          }
+        }
+
+        stopCurrent() {
+          this.oscillators.forEach((osc) => {
+            try {
+              osc.stop();
+            } catch (e) {
+              // Oscillator may already be stopped
+            }
+          });
+
+          this.oscillators = [];
+          this.gainNodes = [];
+          this.isPlaying = false;
+
+          this.clearTimer();
+          this.stopVisualization();
+          this.stopBreathingGuide();
+        }
+
+        stopAll() {
+          this.stopCurrent();
+          this.currentFrequency = 0;
+          this.updateUI();
+          this.updateAnalyzer();
+          this.updateAnalyzerStatus("🛑 All audio stopped");
+        }
+
+        updateGainNodes() {
+          this.gainNodes.forEach((gain) => {
+            if (gain && gain.gain) {
+              gain.gain.value = this.volume;
+            }
+          });
+        }
+
+        fadeIn(duration = 1000) {
+          this.gainNodes.forEach((gain) => {
+            if (gain && gain.gain) {
+              const startTime = this.audioContext.currentTime;
+              gain.gain.cancelScheduledValues(startTime);
+              gain.gain.setValueAtTime(0, startTime);
+              gain.gain.linearRampToValueAtTime(
+                this.volume,
+                startTime + duration / 1000
+              );
+            }
+          });
+        }
+
+        fadeOut(duration = 1000) {
+          this.gainNodes.forEach((gain) => {
+            if (gain && gain.gain) {
+              const startTime = this.audioContext.currentTime;
+              gain.gain.cancelScheduledValues(startTime);
+              gain.gain.setValueAtTime(gain.gain.value, startTime);
+              gain.gain.linearRampToValueAtTime(0, startTime + duration / 1000);
+            }
+          });
+        }
+
+        startVisualization() {
+          if (!this.analyser || !this.canvasCtx) return;
+
+          const bufferLength = this.analyser.frequencyBinCount;
+          const dataArray = new Uint8Array(bufferLength);
+
+          const draw = () => {
+            if (!this.isPlaying) return;
+
+            this.animationId = requestAnimationFrame(draw);
+
+            this.analyser.getByteFrequencyData(dataArray);
+
+            // Clear canvas
+            this.canvasCtx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            this.canvasCtx.fillRect(
+              0,
+              0,
+              this.canvas.offsetWidth,
+              this.canvas.offsetHeight
+            );
+
+            // Draw frequency bars
+            const barWidth = (this.canvas.offsetWidth / bufferLength) * 2.5;
+            let barHeight;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+              barHeight = (dataArray[i] / 255) * this.canvas.offsetHeight * 0.8;
+
+              // Color gradient based on frequency
+              const hue = (i / bufferLength) * 360;
+              this.canvasCtx.fillStyle = `hsla(${hue}, 70%, 60%, 0.8)`;
+
+              this.canvasCtx.fillRect(
+                x,
+                this.canvas.offsetHeight - barHeight,
+                barWidth,
+                barHeight
+              );
+              x += barWidth + 1;
+            }
+
+            // Draw healing frequency indicator
+            if (this.currentFrequency > 0) {
+              this.drawFrequencyIndicator();
+            }
+          };
+
+          draw();
+        }
+
+        drawFrequencyIndicator() {
+          const centerX = this.canvas.offsetWidth / 2;
+          const centerY = this.canvas.offsetHeight / 2;
+          const radius = 30 + Math.sin(Date.now() * 0.005) * 10;
+
+          this.canvasCtx.beginPath();
+          this.canvasCtx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+          this.canvasCtx.strokeStyle = "#4CAF50";
+          this.canvasCtx.lineWidth = 3;
+          this.canvasCtx.stroke();
+
+          // Frequency text
+          this.canvasCtx.fillStyle = "#4CAF50";
+          this.canvasCtx.font = "bold 16px Arial";
+          this.canvasCtx.textAlign = "center";
+          this.canvasCtx.fillText(
+            `${this.currentFrequency} Hz`,
+            centerX,
+            centerY + 5
+          );
+        }
+
+        drawStaticVisualization() {
+          if (!this.canvasCtx) return;
+
+          const centerX = this.canvas.offsetWidth / 2;
+          const centerY = this.canvas.offsetHeight / 2;
+
+          this.canvasCtx.fillStyle = "rgba(0, 0, 0, 0.9)";
+          this.canvasCtx.fillRect(
+            0,
+            0,
+            this.canvas.offsetWidth,
+            this.canvas.offsetHeight
+          );
+
+          this.canvasCtx.fillStyle = "#4CAF50";
+          this.canvasCtx.font = "bold 18px Arial";
+          this.canvasCtx.textAlign = "center";
+          this.canvasCtx.fillText(
+            "🎵 Select a frequency to see visualization",
+            centerX,
+            centerY
+          );
+        }
+
+        stopVisualization() {
+          if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+          }
+          this.drawStaticVisualization();
+        }
+
+        generateAIRecommendations() {
+          const now = new Date();
+          const hour = now.getHours();
+          const recommendations = document.getElementById("aiRecommendations");
+
+          let timeBasedRec = "";
+          if (hour < 10) {
+            timeBasedRec = "morning";
+          } else if (hour < 17) {
+            timeBasedRec = "afternoon";
+          } else {
+            timeBasedRec = "evening";
+          }
+
+          // Update recommendations based on time and user patterns
+          const userPattern = this.getMostUsedFrequency();
+
+          recommendations.innerHTML = `
+            <div class="recommendation-card" data-recommendation="${timeBasedRec}">
+              <strong>⏰ ${
+                timeBasedRec.charAt(0).toUpperCase() + timeBasedRec.slice(1)
+              } Session</strong> -
+              Optimal frequencies for this time of day
+            </div>
+            <div class="recommendation-card" data-recommendation="focus">
+              <strong>🎯 Focus Boost</strong> - Enhanced concentration with 741 Hz + binaural beats
+            </div>
+            <div class="recommendation-card" data-recommendation="personalized">
+              <strong>👤 Personal Favorite</strong> - Your most used frequency: ${userPattern} Hz
+            </div>
+          `;
+        }
+
+        applyRecommendation(type) {
+          const recFreqs = this.recommendations[type] || [
+            this.getMostUsedFrequency(),
+          ];
+          const freq = recFreqs[Math.floor(Math.random() * recFreqs.length)];
+
+          this.switchTab("frequencies");
+          setTimeout(() => this.startFrequency(freq), 300);
+
+          this.updateAnalyzerStatus(
+            `🤖 AI Recommendation applied: ${freq} Hz for ${type}`
+          );
+        }
+
+        toggleBackgroundSound(sound, element) {
+          // Toggle sound card active state
+          document
+            .querySelectorAll(".sound-card")
+            .forEach((card) => card.classList.remove("active"));
+
+          if (this.currentBackgroundSound === sound) {
+            this.currentBackgroundSound = null;
+            return;
+          }
+
+          element.classList.add("active");
+          this.currentBackgroundSound = sound;
+
+          // Here you would load and play background sounds
+          // For now, we'll show a notification
+          this.updateAnalyzerStatus(`🎵 Background sound: ${sound} activated`);
+        }
+
+        trackFrequencyUsage(freq) {
+          this.analytics.frequencyUsage[freq] =
+            (this.analytics.frequencyUsage[freq] || 0) + 1;
+
+          const today = new Date().toDateString();
+          if (this.analytics.lastSessionDate !== today) {
+            this.analytics.sessionsToday = 0;
+            this.analytics.lastSessionDate = today;
+          }
+
+          this.analytics.sessionsToday++;
+          this.saveAnalytics();
+        }
+
+        getMostUsedFrequency() {
+          const usage = this.analytics.frequencyUsage;
+          return Object.keys(usage).reduce(
+            (a, b) => (usage[a] > usage[b] ? a : b),
+            "528"
+          );
+        }
+
+        updateAnalyticsDisplay() {
+          const totalMinutes = Math.floor(this.analytics.totalTime / 60000);
+          document.getElementById("totalTime").textContent = totalMinutes;
+          document.getElementById("sessionsToday").textContent =
+            this.analytics.sessionsToday;
+          document.getElementById("favoriteFreq").textContent =
+            this.getMostUsedFrequency();
+          document.getElementById("streakDays").textContent =
+            this.analytics.streakDays;
+
+          // Update progress insights
+          const insights = this.generateProgressInsights();
+          document.getElementById("progressInsights").textContent = insights;
+        }
+
+        generateProgressInsights() {
+          const totalMinutes = Math.floor(this.analytics.totalTime / 60000);
+          const favFreq = this.getMostUsedFrequency();
+
+          if (totalMinutes < 30) {
+            return "You're just beginning your healing journey. Try 10-minute sessions daily for best results.";
+          } else if (totalMinutes < 120) {
+            return `Great progress! You've practiced for ${totalMinutes} minutes. ${favFreq} Hz seems to be your frequency of choice.`;
+          } else {
+            return `Excellent dedication! ${totalMinutes} minutes of practice shows real commitment to your wellbeing.`;
+          }
+        }
+
+        startTimer() {
+          this.clearTimer();
+
+          this.progressInterval = setInterval(() => {
+            const elapsed = Date.now() - this.sessionStartTime;
+            const progress = Math.min(elapsed / this.sessionDuration, 1);
+            const remaining = Math.max(this.sessionDuration - elapsed, 0);
+
+            if (this.progressFill) {
+              this.progressFill.style.width = progress * 100 + "%";
+            }
+            if (this.timeRemaining) {
+              this.timeRemaining.textContent = `Time: ${this.formatTime(
+                remaining
+              )}`;
+            }
+
+            if (remaining <= 0) {
+              this.onTimerComplete();
+            }
+          }, 1000);
+        }
+
+        onTimerComplete() {
+          const elapsed = Date.now() - this.sessionStartTime;
+          this.analytics.totalTime += elapsed;
+          this.saveAnalytics();
+
+          this.stopCurrent();
+          this.updateAnalyzerStatus(
+            "⏰ Healing session completed - Well done!"
+          );
+          this.updateAnalyticsDisplay();
+        }
+
+        clearTimer() {
+          if (this.progressInterval) {
+            clearInterval(this.progressInterval);
+            this.progressInterval = null;
+          }
+        }
+
+        handleKeyboardShortcuts(e) {
+          if (e.target.tagName.toLowerCase() === "input") return;
+
+          switch (e.key) {
+            case " ":
+              e.preventDefault();
+              if (this.isPlaying) {
+                this.stopAll();
+              } else {
+                this.startFrequency(528); // Default to love frequency
+              }
+              break;
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+              e.preventDefault();
+              const freqIndex = parseInt(e.key) - 1;
+              if (this.frequencies.solfeggio[freqIndex]) {
+                this.startFrequency(this.frequencies.solfeggio[freqIndex]);
+              }
+              break;
+            case "Escape":
+              this.stopAll();
+              break;
+          }
+        }
+
+        updateChakraWheel() {
+          const center = document.getElementById("chakraCenter");
+          if (this.isPlaying && this.currentFrequency) {
+            center.textContent = `${this.currentFrequency}Hz`;
+            center.style.color = this.getChakraColor(this.currentFrequency);
+          } else {
+            center.textContent = "ॐ";
+            center.style.color = "#333";
+          }
+        }
+
+        getChakraColor(frequency) {
+          const chakraColors = {
+            256: "var(--chakra-red)",
+            288: "var(--chakra-orange)",
+            320: "var(--chakra-yellow)",
+            341.3: "var(--chakra-green)",
+            384: "var(--chakra-blue)",
+            426.7: "var(--chakra-indigo)",
+            480: "var(--chakra-violet)",
+          };
+          return chakraColors[frequency] || "#333";
+        }
+
+        updateUI() {
+          // Update button states
+          document.querySelectorAll(".freq-btn").forEach((btn) => {
+            const freq = parseFloat(btn.dataset.freq);
+            btn.classList.toggle("active", freq === this.currentFrequency);
+          });
+
+          // Update status displays
+          if (this.statusText) {
+            this.statusText.textContent = this.isPlaying ? "Playing" : "Ready";
+          }
+
+          if (this.currentFreqDisplay && this.currentFrequency > 0) {
+            this.currentFreqDisplay.textContent = `Current: ${
+              this.currentFrequency
+            } Hz - ${
+              this.frequencyMeanings[this.currentFrequency] ||
+              "Custom Frequency"
+            }`;
+          } else if (this.currentFreqDisplay) {
+            this.currentFreqDisplay.textContent =
+              "Select a healing frequency to begin";
+          }
+        }
+
+        updateAnalyzer() {
+          if (this.currentFrequency > 0 && this.isPlaying) {
+            if (this.currentFreqHz)
+              this.currentFreqHz.textContent = `${this.currentFrequency} Hz`;
+            if (this.healingType)
+              this.healingType.textContent =
+                this.frequencyMeanings[this.currentFrequency] ||
+                "Custom Frequency";
+          } else {
+            if (this.currentFreqHz) this.currentFreqHz.textContent = "0 Hz";
+            if (this.healingType)
+              this.healingType.textContent = "Select frequency";
+          }
+        }
+
+        updateQuickInfo() {
+          const quickInfo = document.getElementById("quickInfo");
+          if (!quickInfo) return;
+
+          if (this.currentFrequency > 0) {
+            const meaning = this.frequencyMeanings[this.currentFrequency];
+            quickInfo.innerHTML = `
+              💡 <strong>${this.currentFrequency} Hz - ${meaning}</strong><br>
+              <small>Practice regularly for enhanced benefits. Use headphones for optimal experience.</small>
+            `;
+          } else {
+            quickInfo.innerHTML =
+              "💡 <strong>Tip:</strong> Use headphones for best experience. Start with 528 Hz (Love frequency) for general healing.";
+          }
+        }
+
+        updateAnalyzerStatus(message) {
+          if (this.analyzerStatus) {
+            this.analyzerStatus.textContent = message;
+          }
+        }
+
+        saveAnalytics() {
+          localStorage.setItem(
+            "solfeggioAnalytics",
+            JSON.stringify(this.analytics)
+          );
+        }
+
+        loadUserPreferences() {
+          const prefs =
+            JSON.parse(localStorage.getItem("solfeggioPreferences")) || {};
+          this.volume = prefs.volume || 0.4;
+          this.autoFade = prefs.autoFade || false;
+
+          if (this.volumeSlider) {
+            this.volumeSlider.value = this.volume * 100;
+            this.volumeDisplay.textContent =
+              Math.round(this.volume * 100) + "%";
+          }
+        }
+
+        saveUserPreferences() {
+          const prefs = {
+            volume: this.volume,
+            autoFade: this.autoFade,
+          };
+          localStorage.setItem("solfeggioPreferences", JSON.stringify(prefs));
+        }
+
+        formatTime(ms) {
+          const minutes = Math.floor(ms / 60000);
+          const seconds = Math.floor((ms % 60000) / 1000);
+          return `${minutes.toString().padStart(2, "0")}:${seconds
+            .toString()
+            .padStart(2, "0")}`;
+        }
+
+        // Additional utility methods
+        startBreathingGuide() {
+          const breathingGuide = document.getElementById("breathingGuide");
+          const breathCircle = document.getElementById("breathCircle");
+
+          if (!breathingGuide || !breathCircle) return;
+
+          breathingGuide.style.display = "block";
+          let inhaling = true;
+
+          this.breathingInterval = setInterval(() => {
+            if (inhaling) {
+              breathCircle.textContent = "Exhale";
+              breathCircle.style.backgroundColor = "rgba(76, 175, 80, 0.1)";
+            } else {
+              breathCircle.textContent = "Inhale";
+              breathCircle.style.backgroundColor = "transparent";
+            }
+            inhaling = !inhaling;
+          }, 4000);
+        }
+
+        stopBreathingGuide() {
+          const breathingGuide = document.getElementById("breathingGuide");
+          if (breathingGuide) {
+            breathingGuide.style.display = "none";
+          }
+
+          if (this.breathingInterval) {
+            clearInterval(this.breathingInterval);
+            this.breathingInterval = null;
+          }
+        }
+
+        startPreset(presetName) {
+          const presetFreqs = {
+            chakra: [256, 288, 320, 341.3, 384, 426.7, 480],
+            sleep: [174, 285, 396],
+            meditation: [528, 639, 741],
+            focus: [741, 852, 963],
+            healing: [174, 285, 528, 639],
+          };
+
+          const frequencies = presetFreqs[presetName];
+          if (frequencies) {
+            this.startFrequency(frequencies[0]);
+            this.updateAnalyzerStatus(
+              `🎭 Starting ${presetName} preset with ${frequencies[0]} Hz`
+            );
+          }
+        }
+      }
+
+      // Initialize the enhanced application
+      document.addEventListener("DOMContentLoaded", () => {
+        const studio = new AdvancedSolfeggioStudio();
+
+        // Make it globally accessible for debugging
+        window.solfeggioStudio = studio;
+
+        console.log("🎵 Advanced Solfeggio Frequencies Studio Loaded");
+        console.log("✨ New Features:");
+        console.log("- Real-time audio visualization");
+        console.log("- Binaural beats generator");
+        console.log("- Chakra frequency mapping");
+        console.log("- AI-powered recommendations");
+        console.log("- Session analytics & progress tracking");
+        console.log("- Background sound library");
+        console.log("- Advanced keyboard shortcuts (Space, 1-9, Esc)");
+        console.log("- Mobile-responsive design");
+        console.log("");
+        console.log("🎹 Keyboard Shortcuts:");
+        console.log("Space - Play/Stop");
+        console.log("1-9 - Play Solfeggio frequencies");
+        console.log("Esc - Stop all audio");
+      });
+    </script>
+  </body>
+</html>
